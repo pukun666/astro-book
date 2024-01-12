@@ -2,27 +2,23 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-
-const allPosts = await Astro.glob('../pages/posts/*.md');
+const { pageTitle } = Astro.props;
 ---
-<!doctype html>
-<html lang="en">
+<html lang="zh">
 	<head>
-		<meta charset="UTF-8" />
+    	<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
-	</head>
-	<body>
+		 <title>{pageTitle}</title>
+   </head>
+   <body>
 		<Header />
-		<ul>
-      		{allPosts.map((post) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)}
-    	</ul>
-  
-        <div>博客页面</div>
+		<h1>{pageTitle}</h1>
+		<slot />
 		<Footer />
-
 		<script>
 			import "../js/menu.js";
   		</script>
 	</body>
 </html>
+
